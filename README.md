@@ -1,3 +1,5 @@
+![Portfolio Screenshot](assets/screenshot.png)
+
 # portfolio
 
 Personal portfolio built with Vue.js showcasing projects, skills and contact information.
