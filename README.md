@@ -4,6 +4,9 @@
 
 Personal portfolio built with Vue.js showcasing projects, skills and contact information.
 
+🌐 **Live Demo:**  
+[https://pedrozalayeta.github.io/portfolio-vue/](https://pedrozalayeta.github.io/portfolio-vue/)
+
 ## Project setup
 ```
 npm install
