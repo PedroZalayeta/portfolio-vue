@@ -1,4 +1,4 @@
-![Portfolio Screenshot](assets/screenshot.png)
+![Portfolio Screenshot](src/assets/screenshot.png)
 
 # portfolio
 
