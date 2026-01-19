@@ -1,5 +1,7 @@
 # portfolio
 
+Personal portfolio built with Vue.js showcasing projects, skills and contact information.
+
 ## Project setup
 ```
 npm install
