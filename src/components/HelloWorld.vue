@@ -151,6 +151,11 @@ export default {
   z-index: 1;
 
   background-color: black;
+  border: solid;
+  border-left: 0cap;
+  border-top: 0cap;
+  border-right: 0cap;
+  border-color: #474747; 
 }
 
 #dash a {
