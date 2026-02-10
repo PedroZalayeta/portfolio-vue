@@ -1,67 +1,80 @@
+<script setup>
+import { useI18n } from 'vue-i18n'
+
+const { locale } = useI18n({ useScope: 'global' })
+
+const toggleLang = () => {
+  locale.value = locale.value === 'es' ? 'en' : 'es'
+}
+</script>
+
 <template>
   <div id="dash">
-    <a href="#hello">About</a>
-    <a href="#myprojects">Projects</a>
-    <a href="#contact">Contact</a>
+    <button @click="toggleLang">
+    {{ locale === 'es' ? 'EN' : 'ES' }}
+    </button>
+    <a href="#hello">{{ $t('home.about') }}</a>
+    <a href="#myprojects">{{ $t('home.projects') }}</a>
+    <a href="#contact">{{ $t('home.contact') }}</a>
   </div>
   <div id="hello">
-    <h1>{{ msg }}</h1>
-    <h3>Software Developer / Machine Learning / Web Development</h3>
-    <a class="button" href="#contact">Contact Me</a>
+      <h1>{{ $t('home.title') }}</h1>
+    <h3>{{ $t('home.subtitle') }}</h3>
+    <a class="button" href="#contact">{{ $t('home.contactbutton') }}</a>
   </div>
   <div id="board">
     <div id="aboutme">
       <h1>
-        About me:
+      {{  $t('home.aboutme') }}
       </h1>
     </div>
     <div id="desc">
       <p>
-        I am a university student focused on Machine Learning and software development. I enjoy working with Python and libraries such as scikit-learn, TensorFlow, NumPy, and pandas, as well as exploring C++ and web development.
+      {{  $t('home.desc1') }}
       </p>
       <p>
-        I’m especially interested in applying Machine Learning and Deep Learning to real-world problems, learning through hands-on projects, and continuously improving my technical skills while growing in professional environments.
+      {{  $t('home.desc2') }}
       </p>
-      <h1>Education:</h1>
+      <h1>{{  $t('home.education') }}</h1>
       <p>
-        I am currently studying at the University of the Republic (UDELAR), pursuing a degree in Computer Engineering.
+        {{  $t('home.desc3') }}
       </p>
     </div>
     <div id="myprojects">
       <h1>
-        My Projects & Contributions:
+        {{ $t('home.myprojects') }}
       </h1>
       <div id="projects">
         <div class="box">
           <h1>LibreCourse</h1>
-          <h2>Contribution</h2>
-          <p>LibreCourse is an open-source Django application for creating, organizing, and collaborating on courses.</p>
-          <p>It’s designed to empower educators, learners, and communities by providing a flexible, modern platform to share knowledge freely.</p>
-          <a class="button" href="https://github.com/emiliano-gandini-outeda/LibreCourse" target="_blank">See more</a>
+          <h2>{{ $t('home.contribution') }}</h2>
+          <p>{{ $t('home.librecourse1') }}</p>
+          <p>{{ $t('home.librecourse2') }}</p>
+          <a class="button" href="https://github.com/emiliano-gandini-outeda/LibreCourse" target="_blank"><p>{{ $t('home.seemore') }}</p></a>
         </div>
         <div class="box">
           <h1>Mailter</h1>
-          <h2>Project</h2>
-          <p>Mailter is an open-source application developed in Python that uses Machine Learning to classify and filter emails, automatically identifying those relevant for professional or work-related purposes.</p>
-          <a class="button" href="https://github.com/emiliano-gandini-outeda/LibreCourse" target="_blank">See more</a>
+          <h2>{{ $t('home.project') }}</h2>
+          <p>{{ $t('home.mailter') }}</p>
+          <a class="button" href="https://github.com/emiliano-gandini-outeda/LibreCourse" target="_blank">{{ $t('home.seemore') }}</a>
         </div>
         <div class="box">
           <h1>Nauta</h1>
-          <h2>Project</h2>
-          <p>Nauta is a pixel art RPG developed in Godot, inspired by classic RPGs but with a reinvented approach.</p>
-          <p>The game features a vast, living world filled with lovable characters, interconnected stories, and environments that encourage constant exploration.</p>
-          <a class="button" href="https://github.com/emiliano-gandini-outeda/LibreCourse" target="_blank">See more</a>
+          <h2>{{ $t('home.project') }}</h2>
+          <p>{{ $t('home.nauta1') }}</p>
+          <p>{{ $t('home.nauta2') }}</p>
+          <a class="button" href="https://github.com/emiliano-gandini-outeda/LibreCourse" target="_blank">{{ $t('home.seemore') }}</a>
         </div>
       </div>
     </div>
     <div id="contact">
       <div id="cheader"> 
-        <h1>Contact Me</h1>
+        <h1>{{ $t('home.contactbutton') }}</h1>
       </div>
       <div id="contactcontainer">
         <div class ="cbox">
           <img class="icon" src="@/assets/phone.png" alt="Phone">
-          <h1>Phone</h1>
+          <h1>{{ $t('home.phone') }}</h1>
           <h2>+598 99 463 319</h2>
         </div>
         <div class ="cbox">
@@ -69,7 +82,7 @@
           <h1>Email</h1>
           <h2>zalayetapedro@gmail.com</h2>
           <a class="button" href="mailto:zalayetapedro@gmail.com" target="_blank">
-            See more
+            {{ $t('home.seemore') }}
           </a>
         </div>
         <div class ="cbox">
@@ -77,22 +90,13 @@
           <h1>Discord</h1>
           <h2>pedro.z.dev</h2>
           <a class="button" href="https://discord.com/users/pedro.z.dev" target="_blank">
-            See more
+            {{ $t('home.seemore') }}
           </a>
         </div>
       </div>
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
-</script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>

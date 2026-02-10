@@ -1,0 +1,26 @@
+{
+  "home": {
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact",
+
+    "title": "Hi, I'm Pedro",
+    "subtitle": "Software Developer / Machine Learning / Web Development",
+    "contactbutton": "Contact Me",
+    "aboutme": "About me:",
+    "desc1": "I am a university student focused on Machine Learning and software development. I enjoy working with Python and libraries such as scikit-learn, TensorFlow, NumPy, and pandas, as well as exploring C++ and web development.",
+    "desc2": "I’m especially interested in applying Machine Learning and Deep Learning to real-world problems, learning through hands-on projects, and continuously improving my technical skills while growing in professional environments.",
+    "education": "Education:",
+    "desc3": "I am currently studying at the University of the Republic (UDELAR), pursuing a degree in Computer Engineering.",
+    "myprojects": "My Projects & Contributions:",
+    "contribution": "Contribution",
+    "librecourse1": "LibreCourse is an open-source Django application for creating, organizing, and collaborating on courses.",
+    "librecourse2": "It’s designed to empower educators, learners, and communities by providing a flexible, modern platform to share knowledge freely.",
+    "seemore": "See more",
+    "project": "Project",
+    "mailter": "Mailter is an open-source application developed in Python that uses Machine Learning to classify and filter emails, automatically identifying those relevant for professional or work-related purposes.",
+    "nauta1": "Nauta is a pixel art RPG developed in Godot, inspired by classic RPGs but with a reinvented approach.",
+    "nauta2": "The game features a vast, living world filled with lovable characters, interconnected stories, and environments that encourage constant exploration.",
+    "phone": "Phone"
+  }
+}
