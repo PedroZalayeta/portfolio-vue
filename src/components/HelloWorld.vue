@@ -265,9 +265,14 @@ const flipCard = (i) => {
       <div id="contactcontainer">
 
         <div class="cbox">
-          <h2>{{ $t('home.phone') }}</h2>
-          <p>{{ $t('home.number') }}</p>
-          <button class="button">+598 99 463 319</button>
+          <h2>{{ $t('home.mylinkedin') }}</h2>
+          <p>{{ $t('home.mylinkedin2') }}</p>
+          <a
+            class="button"
+            href="https://www.linkedin.com/in/pedro-zalayeta-aa2870375/"
+            target="_blank">
+            {{ $t('home.seemore') }}
+          </a>
         </div>
 
         <div class="cbox">
@@ -282,12 +287,12 @@ const flipCard = (i) => {
         </div>
 
         <div class="cbox">
-          <h2>Discord</h2>
-          <p>pedro.z.dev</p>
+          <h2>GitHub</h2>
+          <p>.../PedroZalayeta</p>
 
           <a
             class="button"
-            href="https://discord.com/users/pedro.z.dev"
+            href="https://github.com/PedroZalayeta"
             target="_blank">
             {{ $t('home.seemore') }}
           </a>

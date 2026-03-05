@@ -22,7 +22,7 @@
     "mailter": "Pigeon es una extensión web diseñada para la clasificación automática de correos electrónicos utilizando Machine Learning en Python. Cuenta con un backend desarrollado en FastAPI, que procesa los datos y entrega resultados de manera rápida y eficiente, facilitando la organización inteligente del correo para los usuarios.",
     "nauta1": "Nauta es un RPG en estilo pixel art desarrollado en Godot, inspirado en los RPG clásicos, pero con un enfoque renovado.",
     "nauta2": "El juego presenta un mundo amplio y dinámico, lleno de personajes carismáticos, historias interconectadas y entornos que fomentan la exploración constante.",
-    "phone": "Telefono",
-    "number": "Numero"
+    "mylinkedin": "Mi LinkedIn",
+    "mylinkedin2": "../pedro-zalayeta-aa2870375/"
   }
 }
