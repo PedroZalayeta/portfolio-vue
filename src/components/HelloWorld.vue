@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { locale } = useI18n({ useScope: 'global' })
+const showMenu = ref(false)
 
 const toggleLang = () => {
   locale.value = locale.value === 'es' ? 'en' : 'es'
@@ -20,22 +21,24 @@ const flipCard = (i) => {
 
 
   <nav class="navbar">
-    <div class="nav-container">
+  <div class="nav-container">
+    <div class="logo">MY PORTFOLIO</div>
 
-        <div class="logo">MY PORTFOLIO</div>
+    <!-- Botón hamburguesa -->
+    <button @click="showMenu = !showMenu" class="hamburger">☰</button>
 
-        <ul class="nav-links">
-            <li><a href="#about" data-es="Sobre mí" data-en="About">{{ $t('home.about') }}</a></li>
-            <li><a href="#skills" data-es="Tecnologías" data-en="Technologies">{{ $t('home.tecnologies') }}</a></li>
-            <li><a href="#projects" data-es="Proyectos" data-en="Projects">{{ $t('home.projects') }}</a></li>
-            <li><a href="#contact" data-es="Contacto" data-en="Contact">{{ $t('home.contact') }}</a></li>
-        </ul>
+    <!-- Links -->
+    <ul :class="['nav-links', { show: showMenu }]">
+      <li><a href="#about">{{ $t('home.about') }}</a></li>
+      <li><a href="#skills">{{ $t('home.tecnologies') }}</a></li>
+      <li><a href="#projects">{{ $t('home.projects') }}</a></li>
+      <li><a href="#contact">{{ $t('home.contact') }}</a></li>
+    </ul>
 
-        <button @click="toggleLang" id="langBtn">
-          {{ locale === 'es' ? 'EN' : 'ES' }}
-        </button>
-      </div>
-  </nav>
+    <!-- Botón idioma -->
+    <button @click="toggleLang" id="langBtn">{{ locale === 'es' ? 'EN' : 'ES' }}</button>
+  </div>
+</nav>
 
 
   <!-- HERO -->
@@ -217,7 +220,7 @@ const flipCard = (i) => {
             <div class="card-back">
               <p>{{ $t('home.mailter') }}</p>
 
-              <a class="button" href="#" target="_blank">
+              <a class="button" href="https://github.com/PedroZalayeta" target="_blank">
                 {{ $t('home.seemore') }}
               </a>
             </div>
@@ -240,7 +243,7 @@ const flipCard = (i) => {
               <p>{{ $t('home.nauta1') }}</p>
               <p>{{ $t('home.nauta2') }}</p>
 
-              <a class="button" href="#" target="_blank">
+              <a class="button" href="https://github.com/PedroZalayeta" target="_blank">
                 {{ $t('home.seemore') }}
               </a>
             </div>
@@ -316,49 +319,49 @@ body{
 /* ---------- NAVBAR ---------- */
 
 .navbar {
-    width: 100%;
-    padding: 20px 0;
-    background: rgba(0,0,0,0.8);
-    backdrop-filter: blur(6px);
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
+  width: 100%;
+  padding: 20px 0;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(6px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 .nav-container {
-    width: 80%;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  width: 80%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
 }
 
 .logo {
-    font-size: 22px;
-    font-weight: bold;
-    letter-spacing: 3px;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 3px;
 }
 
 .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 35px;
+  list-style: none;
+  display: flex;
+  gap: 35px;
 }
 
 .nav-links a {
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
-    transition: 0.3s;
-    letter-spacing: 1px;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  transition: 0.3s;
 }
 
 .nav-links a:hover {
-    color: #ff3c3c;
+  color: #ff3c3c;
 }
 
-button{
+button {
   background:#8b0000;
   color:white;
   border:none;
@@ -369,9 +372,19 @@ button{
   transition:0.3s;
 }
 
-button:hover{
+button:hover {
   background:#c40000;
   transform:scale(1.05);
+}
+
+/* Botón hamburguesa (oculto en escritorio) */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
 }
 
 /* ---------- HERO ---------- */
@@ -874,6 +887,99 @@ button:hover{
   to{
     opacity:1;
     transform:translateY(0) scale(1);
+  }
+
+}
+
+/* ===== MOBILE STYLES ===== */
+@media screen and (max-width: 768px) {
+
+  .logo {
+    font-size: 20px;
+  }
+
+  /* HERO */
+  #hero h1 {
+    font-size: 1.5rem;
+  }
+
+  #hero h2 {
+    font-size: 2rem;
+  }
+
+  .hero-text {
+    font-size: 1rem;
+    max-width: 90%;
+  }
+
+  .hero-button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  /* ABOUT */
+  .about-text {
+    padding: 20px;
+    font-size: 0.95rem;
+  }
+
+  /* SKILLS */
+  .skills-container {
+    width: 100%;
+  }
+
+  .skill {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .diamonds {
+    margin-top: 6px;
+  }
+
+  /* PROJECTS */
+  #projects {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  /* CONTACT */
+  #contactcontainer {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .nav-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    text-align: center;
+    background: rgba(0,0,0,0.95);
+    position: absolute;
+    top: 70px;
+    left: 0;
+    padding: 20px 0;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links li a {
+    font-size: 18px;
+    padding: 10px 0;
   }
 
 }
