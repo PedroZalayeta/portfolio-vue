@@ -9,7 +9,7 @@
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white) 
 ![Godot](https://img.shields.io/badge/Godot-478CBF?style=flat-square&logo=godot-engine&logoColor=white) 
 
-I'm a **Software Developer** and Game Developer passionate about creating engaging digital experiences. I enjoy building projects that blend creativity and functionality, always exploring new technologies and learning along the way.
+I'm a **Software** and Game Developer passionate about creating engaging digital experiences. I enjoy building projects that blend creativity and functionality, always exploring new technologies and learning along the way.
 
 **Web Demo: (https://pedrozalayeta.github.io/portfolio-vue/)**
 
