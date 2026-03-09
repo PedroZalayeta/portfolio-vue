@@ -279,9 +279,7 @@ const flipCard = (i) => {
           <h2>Email</h2>
           <p>zalayetapedro@gmail.com</p>
 
-          <a
-            class="button"
-            href="mailto:zalayetapedro@gmail.com">
+          <a class="button" href="mailto:zalayetapedro@gmail.com">
             {{ $t('home.seemore') }}
           </a>
         </div>
@@ -313,6 +311,10 @@ const flipCard = (i) => {
   margin:0;
   padding:0;
   box-sizing:border-box;
+}
+
+html, body{
+  overflow-x: hidden;
 }
 
 body{
@@ -403,12 +405,12 @@ button:hover {
   align-items: center;
   text-align: center;
   padding: 0 20px;
+  overflow: hidden;
 
   background: radial-gradient(circle at top center, rgba(255,50,50,0.2), rgba(0,0,0,0.95) 80%);
 
   border-bottom-left-radius: 50% 20%;
   border-bottom-right-radius: 50% 20%;
-  overflow: hidden;
 }
 
 #hero h1{
@@ -556,8 +558,9 @@ button:hover {
   content:"♠ ♥ ♦ ♣";
 
   position:absolute;
-
+  width: 100%;
   inset:0;
+  max-width:100%;
 
   font-size:120px;
 
@@ -569,6 +572,7 @@ button:hover {
   white-space:pre-wrap;
 
   transform:rotate(-15deg);
+  transform-origin: center center;  
 
   pointer-events:none;
 
@@ -599,6 +603,8 @@ button:hover {
 
 #board{
   padding:80px 10%;
+  overflow: hidden;
+  position:relative;
   background:
     repeating-linear-gradient(
       45deg,
@@ -729,6 +735,15 @@ button:hover {
 
 #contact{
   margin-top:100px;
+}
+
+#contact h1{
+  text-align:center;
+  margin-bottom:40px;
+  color:#ff4d4d;
+  font-size:2.2rem;
+  letter-spacing:1px;
+  text-shadow:0 0 15px rgba(255,0,0,0.3);
 }
 
 #cheader{
