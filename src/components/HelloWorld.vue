@@ -6,8 +6,25 @@ const { locale, t } = useI18n({ useScope: 'global' })
 const showMenu = ref(false)
 const activeCategory = ref('web')
 
+const isFlipping = ref(false)
+const isFlippingIn = ref(false)
+
 const toggleLang = () => {
-  locale.value = locale.value === 'es' ? 'en' : 'es'
+  if (isFlipping.value || isFlippingIn.value) return
+
+  // Phase 1: flip out
+  isFlipping.value = true
+  setTimeout(() => {
+    // Mid-point: swap language
+    locale.value = locale.value === 'es' ? 'en' : 'es'
+    isFlipping.value = false
+
+    // Phase 2: flip in
+    isFlippingIn.value = true
+    setTimeout(() => {
+      isFlippingIn.value = false
+    }, 350)
+  }, 350)
 }
 
 const flippedWeb   = ref([false, false, false])
@@ -76,6 +93,8 @@ onMounted(() => {
 
 <template>
 
+  <div :class="['page-wrap', { 'lang-flipping': isFlipping, 'lang-flipping-in': isFlippingIn }]">
+
   <!-- ══ NAVBAR ══════════════════════════════════════ -->
   <nav class="navbar">
     <div class="nav-container">
@@ -129,7 +148,7 @@ onMounted(() => {
       <div class="hero-ctas">
         <a class="cta-red" href="#projects">{{ $t('home.myprojects') }}</a>
         <a class="cta-ghost" href="#contact">{{ $t('home.contactbutton') }}</a>
-        <a class="cta-cv" href="/cv/Pedro_Zalayeta_CV.pdf" download>
+        <a class="cta-cv" href="https://drive.google.com/file/d/1frMPzS-Wxt7Rxx3lwDqZ6PKfwsLrpkLk/view?usp=sharing" download>
           <span class="cta-cv-icon">♣</span>
           {{ $t('home.downloadcv') }}
         </a>
@@ -246,7 +265,7 @@ onMounted(() => {
             </div>
           </div>
 
-          <a class="about-cv-btn reveal reveal-left" style="--delay:0.35s" href="/cv/Pedro_Zalayeta_CV.pdf" download>
+          <a class="about-cv-btn reveal reveal-left" style="--delay:0.35s" href="https://drive.google.com/file/d/1frMPzS-Wxt7Rxx3lwDqZ6PKfwsLrpkLk/view?usp=sharing" download>
             <span>{{ $t('home.downloadcv') }}</span>
             <span class="btn-arrow">↓</span>
           </a>
@@ -636,7 +655,7 @@ onMounted(() => {
         <div class="cbox cbox-featured">
           <span class="cbox-suit">♦</span>
           <h3>Email</h3>
-          <a class="cbox-link" href="mailto:zalayetapedro@gmail.com"><span class="__cf_email__" data-cfemail="c399a2afa2baa6b7a2b3a6a7b1ac83a4aea2aaafeda0acae">Click</span></a>
+          <a class="cbox-link" href="/cdn-cgi/l/email-protection#9ce6fdf0fde5f9e8fdecf9f8eef3dcfbf1fdf5f0b2fff3f1"><span class="__cf_email__" data-cfemail="c399a2afa2baa6b7a2b3a6a7b1ac83a4aea2aaafeda0acae">Click</span></a>
         </div>
         <div class="cbox">
           <span class="cbox-suit">♣</span>
@@ -664,6 +683,7 @@ onMounted(() => {
     <span class="footer-suits">♣ ♦ ♥ ♠</span>
   </footer>
 
+  </div>
 </template>
 
 
@@ -1495,36 +1515,172 @@ body { background:var(--felt-dark); color:var(--text); font-family:var(--fn-body
 
 /* ══ MOBILE ═══════════════════════════════════════ */
 @media(max-width:768px){
-  .felt-section { padding:80px 6% 50px; }
+
+  /* ── Navbar ──────────────────────────────────── */
   .hamburger { display:flex; }
   .nav-links {
-    display:none; flex-direction:column; gap:20px;
+    display:none; flex-direction:column; gap:0;
     position:absolute; top:60px; left:0; width:100%;
-    background:rgba(5,16,9,0.97); padding:28px 6%;
+    background:rgba(5,16,9,0.98); backdrop-filter:blur(10px);
     border-top:1px solid var(--border-g);
+    padding:0;
   }
   .nav-links.show { display:flex; }
-  .about-body-grid { grid-template-columns:1fr; gap:40px; }
-  .about-stats-row { grid-template-columns:1fr 1fr; }
-  .ast-line { display:none; }
-  .ast { border-bottom:1px solid rgba(212,175,55,0.08); }
-  .domain-grid { grid-template-columns:1fr; }
-  .section-headline { font-size:clamp(1.6rem,6vw,2.2rem); }
-  .hero-ctas { flex-direction:column; align-items:center; }
-  .cs-frame [class^="csf-"] { font-size:1.4rem; }
+  .nav-links li { border-bottom:1px solid rgba(212,175,55,0.08); }
+  .nav-links a { display:block; padding:18px 6%; font-size:12px; }
+  .lang-btn { font-size:11px; padding:6px 12px; }
+
+  /* ── Hero ────────────────────────────────────── */
+  #hero { padding:100px 5% 60px; min-height:100svh; }
+  .table-oval { display:none; }
+  .corner-suit { font-size:1.8rem; }
+  .hero-name { font-size:clamp(2rem,11vw,3.2rem); letter-spacing:2px; margin-bottom:16px; }
+  .hero-title { font-size:clamp(0.65rem,2.8vw,0.85rem); letter-spacing:3px; margin-bottom:28px; }
+  .suit-divider { gap:12px; font-size:1.2rem; margin-bottom:14px; }
+  .hero-badge { font-size:10px; letter-spacing:2px; padding:6px 14px; margin-bottom:20px; }
+
+  .hero-ctas {
+    flex-direction:column; align-items:stretch;
+    gap:12px; margin-bottom:36px;
+    width:100%; max-width:320px;
+  }
+  .cta-red, .cta-ghost, .cta-cv {
+    padding:14px 20px; text-align:center; justify-content:center;
+    font-size:11px; letter-spacing:2px;
+  }
+
+  .hero-chips { gap:10px; }
+  .chip { width:58px; height:58px; font-size:7.5px; }
+
+  /* Deco cards — hide on very small screens, tone down on larger mobile */
+  .deco-card { opacity:0.35; }
+  .dc1 { top:8%;   left:1%;  width:52px; height:74px; font-size:1rem; }
+  .dc2 { top:10%;  right:1%; width:52px; height:74px; font-size:1rem; }
+  .dc3 { display:none; }
+  .dc4 { display:none; }
+
+  /* ── Board / Sections ────────────────────────── */
+  .felt-section { padding:64px 5% 48px; }
+  .board-edge-cards { display:none; }
+
+  /* Section headers */
+  .section-eyebrow { font-size:11px; letter-spacing:3px; margin-bottom:14px; }
+  .section-headline { font-size:clamp(1.5rem,7vw,2rem); margin-bottom:14px; }
+  .sec-suit-divider { margin-bottom:24px; }
+  .section-subline { font-size:0.95rem; line-height:1.9; margin-bottom:40px; }
   .sec-suit { display:none; }
   .sec-deco-card { display:none; }
-  .contact-grid { grid-template-columns:1fr 1fr; max-width:480px; }
-  .table-oval { display:none; }
-  .corner-suit { font-size:2rem; }
-  .hero-chips { gap:12px; }
-  .chip { width:62px; height:62px; font-size:8px; }
-  .cat-tabs { gap:8px; }
-  .cat-chip { padding:10px 16px; font-size:10px; }
-  .play-card { width:175px; height:262px; }
-  .play-card-ace { width:210px; height:300px; }
-  .cards-row { gap:16px; }
-  .hero-name { letter-spacing:3px; }
-  .hero-ctas { flex-direction:column; align-items:center; }
+  .cs-frame [class^="csf-"] { font-size:1.2rem; }
+
+  /* ── About ───────────────────────────────────── */
+  .about-stats-row {
+    grid-template-columns:1fr 1fr;
+    margin-bottom:48px;
+  }
+  .ast-line { display:none; }
+  .ast {
+    padding:24px 12px;
+    border-bottom:1px solid rgba(212,175,55,0.08);
+  }
+  .ast-n { font-size:clamp(1.8rem,7vw,2.6rem); }
+  .ast-l { font-size:9px; letter-spacing:1.5px; }
+
+  .about-body-grid { grid-template-columns:1fr; gap:36px; }
+  .about-desc { font-size:0.95rem; margin-bottom:28px; }
+
+  .spec-item { gap:14px; padding:16px 0; }
+  .spec-name { font-size:13px; letter-spacing:1px; }
+  .spec-tech { font-size:12px; }
+
+  .about-cv-btn { width:100%; justify-content:center; padding:14px 20px; }
+
+  .edu-block { padding:24px 20px; }
+  .lang-block { padding:24px 20px; }
+
+  /* ── Skills ──────────────────────────────────── */
+  .domain-grid {
+    grid-template-columns:1fr;
+    margin-bottom:32px;
+  }
+  .domain-card { padding:24px 20px; }
+  .domain-name { font-size:0.95rem; }
+
+  /* ── Projects ────────────────────────────────── */
+  .section-header { margin-bottom:36px; }
+  .section-title { font-size:clamp(1.3rem,6vw,1.8rem); letter-spacing:3px; }
+
+  .cat-tabs { gap:8px; margin-bottom:28px; flex-wrap:wrap; }
+  .cat-chip { padding:10px 16px; font-size:10px; letter-spacing:1.5px; gap:6px; }
+  .chip-suit { font-size:1rem; }
+
+  .cards-row {
+    gap:14px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .play-card     { width:160px; height:240px; }
+  .play-card-ace { width:190px; height:270px; }
+  .pc-back p  { font-size:11.5px; line-height:1.65; }
+  .pc-back h3 { font-size:13px; }
+  .pc-btn, .pc-btn-ghost { font-size:9px; padding:8px 10px; }
+  .pc-tags { display:none; }
+
+  /* ── Contact ─────────────────────────────────── */
+  .contact-intro { font-size:0.9rem; margin-bottom:32px; }
+  .contact-grid {
+    grid-template-columns:1fr 1fr;
+    max-width:100%;
+    gap:14px;
+  }
+  .cbox { padding:24px 14px; }
+  .cbox-suit { font-size:1.6rem; margin-bottom:8px; }
+  .cbox h3 { font-size:11px; letter-spacing:2px; }
+  .cbox-link { font-size:11.5px; }
+
+  /* ── Footer ──────────────────────────────────── */
+  .site-footer { flex-direction:column; gap:10px; padding:24px 5%; text-align:center; }
+  .footer-suits { letter-spacing:8px; }
 }
+
+/* ── Extra small (≤ 420px) ──────────────────────── */
+@media(max-width:420px){
+  .hero-name { font-size:clamp(1.8rem,10vw,2.6rem); }
+  .hero-ctas { max-width:100%; }
+  .contact-grid { grid-template-columns:1fr; max-width:280px; margin:0 auto; }
+  .play-card     { width:148px; height:222px; }
+  .play-card-ace { width:172px; height:248px; }
+  .cards-row { justify-content:center; }
+  .cat-chip { padding:9px 12px; font-size:9.5px; }
+  .about-stats-row { grid-template-columns:1fr 1fr; }
+}
+
+/* ══ LANG FLIP ANIMATION ══════════════════════════ */
+.page-wrap {
+  transform-style: preserve-3d;
+  animation-fill-mode: both;
+}
+
+@keyframes langFlipOut {
+  0%   { transform: perspective(1200px) rotateY(0deg);   opacity: 1; }
+  100% { transform: perspective(1200px) rotateY(-90deg); opacity: 0; }
+}
+@keyframes langFlipIn {
+  0%   { transform: perspective(1200px) rotateY(90deg);  opacity: 0; }
+  100% { transform: perspective(1200px) rotateY(0deg);   opacity: 1; }
+}
+
+.lang-flipping {
+  animation: langFlipOut 0.35s cubic-bezier(0.4,0,0.6,1) forwards;
+}
+.lang-flipping-in {
+  animation: langFlipIn 0.35s cubic-bezier(0.4,0,0.6,1) forwards;
+}
+
+.lang-btn {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.lang-btn:active {
+  transform: scale(0.92);
+}
+
 </style>
